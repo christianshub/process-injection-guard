@@ -1,5 +1,10 @@
 #include "Convertions.h"
 
+std::string Convertions::INT_TO_HEXSTRING(int input) {
+	std::stringstream stream;
+	stream << std::hex << input;
+	return stream.str();
+}
 
 std::string Convertions::TO_STRING(PCWSTR string) {
 

@@ -1,6 +1,8 @@
 #include "SigScan/SigScan.h"
 #include "SigScan/ScanHiddenModules/ScanHiddenModules.h"
 #include "SigScan/ScanModules/ScanModules.h"
+#include <windows.h>
+#include <iostream>
 
 DWORD WINAPI Sigscanner(HMODULE hModule)
 {
@@ -28,20 +30,20 @@ DWORD WINAPI Sigscanner(HMODULE hModule)
         {
             std::cout << "1 pressed: Scan modules\n" << std::endl;
             //ScanModules::Find("3d3d3d3d3d????696d706c65", 1);
-            ScanModules::Find("3d3d3d3d213123asd3d????696d706c65", 1);
+            ScanModules::Find("4d5a", 1);
         }
 
-        if (GetAsyncKeyState(0x32) & 1)
-        {
-            std::cout << "2 pressed: Scan specific module\n" << std::endl;
-            ScanModules::Find("3d3d3d3d3d????696d706c65", "SimplePayload.dll", 1);
-        }
+        //if (GetAsyncKeyState(0x32) & 1)
+        //{
+        //    std::cout << "2 pressed: Scan specific module\n" << std::endl;
+        //    ScanModules::Find("3d3d3d3d3d????696d706c65", "SimplePayload.dll", 1);
+        //}
 
-        if (GetAsyncKeyState(0x33) & 1)
-        {
-            std::cout << "3 pressed: Scan hidden modules\n" << std::endl;
-            ScanHiddenModules::Find("3d3d3d3d3d????696d706c65", true);
-        }
+        //if (GetAsyncKeyState(0x33) & 1)
+        //{
+        //    std::cout << "3 pressed: Scan hidden modules\n" << std::endl;
+        //    ScanHiddenModules::Find("3d3d3d3d3d????696d706c65", true);
+        //}
         
 
         Sleep(10);

@@ -11,6 +11,7 @@
 
 namespace Convertions {
 
+	std::string INT_TO_HEXSTRING(int input);
 	std::string TO_STRING(PCWSTR string);
 	std::string hexStr(PBYTE data, int len);
 	char* TO_CHAR(wchar_t* string);
