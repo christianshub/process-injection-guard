@@ -1,6 +1,5 @@
 #include "SigScan.h"
 #include <string>     // std::string, std::stol
-#include "../Utility/DumpOutput.h"
 #include "windows.h"
 
 //MEMORY_BASIC_INFORMATION ScanHiddenModules::mbi = {};
