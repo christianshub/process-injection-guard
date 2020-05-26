@@ -1,12 +1,12 @@
-#include "ScanModules.h"
+#include "Scan.h"
 
-std::vector<ScanModules::infoStruct> ScanModules::GetModuleInfo()
+std::vector<Scan::infoStruct> Scan::GetModuleInfo()
 {
     PEB* pPEB = (PEB*)__readfsdword(0x30);
     LDR_DATA_TABLE_ENTRY* Current = NULL;
     LIST_ENTRY* CurrentEntry = pPEB->Ldr->InMemoryOrderModuleList.Flink;
 
-    std::vector<ScanModules::infoStruct> container;
+    std::vector<infoStruct> container;
     container.clear();
 
     while (CurrentEntry != &pPEB->Ldr->InMemoryOrderModuleList && CurrentEntry != NULL)
@@ -27,27 +27,94 @@ std::vector<ScanModules::infoStruct> ScanModules::GetModuleInfo()
     return container;
 }
 
-std::string CreateFolder() 
+std::string Scan::RunningFolder() 
 {
     TCHAR NPath[MAX_PATH];
     GetCurrentDirectory(MAX_PATH, NPath);
-    std::string folderPath = std::string(NPath) + "\\Dump";
+    std::string folderPath = std::string(NPath);
 
-    CreateDirectory(folderPath.c_str(), NULL);
     return folderPath;
 }
 
-void ScanModules::Find(std::string signature, BOOL fullscan)
+
+void Scan::PrivateERW(std::string signature, std::string outputDir)
+{
+    SYSTEM_INFO sysinfo = {};
+    MEMORY_BASIC_INFORMATION mbi = {};
+
+    outputDir += "\\Dump";
+
+    std::cout << "outputDir create at " << outputDir << std::endl;
+    CreateDirectory(outputDir.c_str(), NULL);
+
+    VirtualQuery(0, &mbi, sizeof(mbi));
+
+    GetSystemInfo(&sysinfo);
+
+    for (unsigned int i = 0; i < (unsigned int)sysinfo.lpMaximumApplicationAddress; i += mbi.RegionSize++) {
+
+        size_t buf = VirtualQuery((LPCVOID)i, &mbi, sizeof(mbi));
+        if ((buf != 0) && (mbi.Type == MEM_PRIVATE) && (mbi.AllocationProtect == PAGE_EXECUTE_READWRITE))
+        {
+            std::string fileName = outputDir + "\\" + Convertions::INT_TO_HEXSTRING(i) + "_" + ".txt";
+            std::ofstream fout(fileName);
+
+            if ((mbi.Protect != PAGE_EXECUTE_READWRITE) && (mbi.Protect != PAGE_EXECUTE_READ) && (mbi.Protect != PAGE_READONLY) && (mbi.Protect != PAGE_READWRITE))
+            {
+                VirtualAlloc((LPVOID)i, mbi.RegionSize, MEM_COMMIT, PAGE_EXECUTE_READ);
+            }
+
+            SigScan::FindSignature(signature, i, mbi.RegionSize, fout);
+            VirtualAlloc((LPVOID)i, mbi.RegionSize, mbi.AllocationProtect, mbi.Protect);
+
+            fout.close();
+        }  
+    }
+
+    std::cout << "[+] Done." << std::endl;
+}
+
+void Scan::ModMemory(std::string signature, std::string moduleName, std::string outputDir)
 {
     MEMORY_BASIC_INFORMATION mbi;
-    std::string folder = CreateFolder();
+    
+    outputDir += "\\Dump";
+    std::cout << "Folder create at " << outputDir << std::endl;
+    CreateDirectory(outputDir.c_str(), NULL);
+
     std::vector<infoStruct> container = GetModuleInfo();
 
-    for (unsigned int i = 0; i < (unsigned int) container.size(); i++) {
 
-        VirtualQuery((LPCVOID) container[i].base, &mbi, sizeof(mbi));
+    int iterator = 0;
+    int containerLength = container.size();
 
-        for (unsigned int curAddress = (unsigned int) container[i].base; curAddress < ( ((unsigned int) container[i].base) + ((unsigned int) container[i].size) - 1); curAddress += mbi.RegionSize++) {
+    if (moduleName != "ALL") {
+        for (iterator; iterator < containerLength; iterator++) {
+            if (container[iterator].name == moduleName) 
+            {
+                containerLength = iterator + 1;
+                break;
+            }
+        }  
+    }
+
+    for (iterator; iterator < containerLength; iterator++) {
+
+        VirtualQuery((LPCVOID) container[iterator].base, &mbi, sizeof(mbi));
+
+        std::string fileName = outputDir + "\\" + container[iterator].name + "_" + ".txt";
+        std::ofstream fout(fileName);
+
+        fout << "==================================================================================" << std::endl;
+        fout << "MODULE INFORMATION:" << std::endl;
+        fout << " - Base: " << container[iterator].base << std::endl;
+        fout << " - Name: " << container[iterator].name << std::endl;
+        fout << " - Path: " << container[iterator].path << std::endl;
+        fout << " - Size: " << container[iterator].size << std::endl;
+        fout << "==================================================================================\n" << std::endl;
+
+        // BASIC SCAN
+        for (unsigned int curAddress = (unsigned int) container[iterator].base; curAddress < ( ((unsigned int) container[iterator].base) + ((unsigned int) container[iterator].size) - 1); curAddress += mbi.RegionSize++) {
 
             size_t buf = VirtualQuery((LPCVOID)curAddress, &mbi, sizeof(mbi));
             if ( (buf != 0) && (mbi.Protect != PAGE_NOACCESS) && (mbi.Protect != 0) )
@@ -57,54 +124,24 @@ void ScanModules::Find(std::string signature, BOOL fullscan)
                     VirtualAlloc((LPVOID) curAddress, mbi.RegionSize, MEM_COMMIT, PAGE_EXECUTE_READ);
                 }
 
-                std::string fileName = folder + "\\" + container[i].name + "_" + Convertions::INT_TO_HEXSTRING(curAddress) + ".txt";
-
-                std::ofstream fout(fileName);
-               
-                std::cout << "[+] Scanning module " << container[i].name << " at address " << std::hex << std::uppercase << curAddress << "..." << std::endl;
-
-                fout << "==================================================================================" << std::endl;
-                fout << "MODULE INFORMATION:" << std::endl;
-                fout << " - Base: " << container[i].base << std::endl;
-                fout << " - Name: " << container[i].name << std::endl;
-                fout << " - Path: " << container[i].path << std::endl;
-                fout << " - Size: " << container[i].size << std::endl;
+                std::cout << "[+] Scanning module " << container[iterator].name << " at address " << std::hex << std::uppercase << curAddress << "..." << std::endl;
 
                 PrintMBI(mbi, fout);
                 
                 SigScan::FindSignature(signature, curAddress, mbi.RegionSize, fout);
-
-                fout.close();
-            
             }
             VirtualAlloc((LPVOID)curAddress, mbi.RegionSize, mbi.AllocationProtect, mbi.Protect);
         }
+        
+        fout.close();
     }
 
     std::cout << "[+] Done." << std::endl;
 }
 
-void ScanModules::Find(std::string signature, std::string moduleName, BOOL fullscan)
-{
-    std::vector<ScanModules::infoStruct> container = GetModuleInfo();
-    for (unsigned int i = 0; i < (unsigned int) container.size(); i++) {
-        if (container[i].name == moduleName) {
-            
-            std::cout << "base: " << container[i].base << std::endl;
-            std::cout << "name: " << container[i].name << std::endl;
-            std::cout << "path: " << container[i].path << std::endl;
-            std::cout << "size: " << container[i].size << std::endl;
 
-            //ScanModules::FindSignature(signature, (unsigned int) container[i].base, container[i].size, fullscan);
-            // std::string Sig, unsigned int beginning, unsigned int size, bool fullscan
-            
-        }    
-    }
 
-    std::cout << "[+] Done." << std::endl;
-}
-
-void ScanModules::PrintMBI(MEMORY_BASIC_INFORMATION mbi, std::ostream& out) {
+void Scan::PrintMBI(MEMORY_BASIC_INFORMATION mbi, std::ostream& out) {
 
     std::string StateText;
     std::string TypeText;
@@ -241,7 +278,6 @@ void ScanModules::PrintMBI(MEMORY_BASIC_INFORMATION mbi, std::ostream& out) {
         break;
     }
 
-    out << "==================================================================================" << std::endl;
     out << "MEMORY BASIC INFORMATION:" << std::endl;
     out << " - BaseAddress          0x" << std::hex << std::uppercase << mbi.BaseAddress << std::endl;
     out << " - AllocationProtect    " << AllocProcText << std::endl;

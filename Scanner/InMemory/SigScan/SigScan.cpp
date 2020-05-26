@@ -54,13 +54,11 @@ std::string SigScan::hexStr(BYTE* data, int len)
 // public
 void SigScan::FindSignature(std::string signature, unsigned int address, ULONG size, std::ostream& out)
 {
-    out << "==================================================================================" << std::endl;
     out << "SIGNATURE SCAN:" << std::endl;
-
-    out << " - Signature:     " << signature << std::endl;
-    out << " - Start address: 0x" << std::hex << std::uppercase << address << std::endl;
-    out << " - Page size:     0x" << std::hex << size << std::endl;
-    out << " - End address:   0x" << std::hex << (address + size - 1) << std::endl;
+    out << " - Signature:           " << signature << std::endl;
+    out << " - Start address:       0x" << std::hex << std::uppercase << address << std::endl;
+    out << " - Page size:           0x" << std::hex << size << std::endl;
+    out << " - End address:         0x" << std::hex << (address + size - 1) << std::endl;
 
     FirstSigByte = signature.substr(0, 2); // Get the first byte from Sig.
     Container.clear();               // Clear the Container for patterns before initiation.

@@ -5,7 +5,7 @@
 #include "rfw_ntdll.h"
 #include "../../Utility/Convertions.h"
 
-namespace ScanModules {
+namespace Scan {
 
     struct infoStruct {
         std::string name = "";
@@ -14,11 +14,12 @@ namespace ScanModules {
         ULONG size = 0;
     };
     
-    void Find(std::string signature, BOOL fullscan);
-    void Find(std::string signature, std::string moduleName, BOOL fullscan);
+    std::string RunningFolder();
+    void ModMemory(std::string signature, std::string moduleName = "ALL", std::string outputDir = RunningFolder());
+    void PrivateERW(std::string signature, std::string outputDir = RunningFolder());
 
     std::vector<infoStruct> GetModuleInfo();
 
+    
     void PrintMBI(MEMORY_BASIC_INFORMATION mbi, std::ostream& out);
-    void PrintSystemInfo(std::ostream& out);
 }
