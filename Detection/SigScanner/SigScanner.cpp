@@ -55,9 +55,18 @@ void PrivateERW(std::string signature)
         if ((buf != 0) && (mbi.Type == MEM_PRIVATE) && (mbi.AllocationProtect == PAGE_EXECUTE_READWRITE))
         {
 
-            if ((mbi.Protect != PAGE_EXECUTE_READWRITE) && (mbi.Protect != PAGE_EXECUTE_READ) && (mbi.Protect != PAGE_READONLY) && (mbi.Protect != PAGE_READWRITE))
+            //if ((mbi.Protect != PAGE_EXECUTE_READWRITE) && (mbi.Protect != PAGE_EXECUTE_READ) && (mbi.Protect != PAGE_READONLY) && (mbi.Protect != PAGE_READWRITE))
+            if (mbi.Protect != PAGE_EXECUTE_READ)
+            
             {
+                std::cout << "Address " << std::hex << i << " will be changed!" << std::endl;
+                std::cout << "Sleep 30 seconds!" << std::endl;
+                Sleep(60000);
                 VirtualAlloc((LPVOID)i, mbi.RegionSize, MEM_COMMIT, PAGE_EXECUTE_READ);
+                VirtualProtect((LPVOID)i, mbi.RegionSize, PAGE_EXECUTE_READ, &mbi.Protect);
+
+
+                std::cout << "CHANGED!" << std::endl;
             }
 
             //std::cout << "[+] Scanning for signature '" << signature << "' at address " << std::hex << std::uppercase << i << "..." << std::endl;
