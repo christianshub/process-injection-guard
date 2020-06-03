@@ -19,8 +19,9 @@ struct infoStruct {
     ULONG size = 0;
 };
     
-void ModMemory(std::string signature);
-void PrivateERW(std::string signature);
+void ModuleScan(std::string signature);
+void ManualMapScan(std::string signature);
+void ScanAll(std::string signature);
 
 std::vector<infoStruct> GetModuleInfo();
 

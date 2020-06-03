@@ -29,7 +29,8 @@ DWORD WINAPI Detection(HMODULE hModule)
     std::cout << "Press '2'         Hook LoadLibraryA hook" << "\n" << std::endl;
 
     std::cout << "Press '3'         Scan module(s) from config.ini" << std::endl;
-    std::cout << "Press '4'         Scan known Reflective DLL memory regions" << "\n" << std::endl;
+    std::cout << "Press '4'         Scan known Reflective DLL memory regions" << std::endl;
+    std::cout << "Press '5'         Scan all memory regions" << "\n" << std::endl;
 
     std::cout << "Press '0'         Detach Detection module" << std::endl;
     std::cout << "======================================================================" << "\n" << std::endl;
@@ -53,13 +54,13 @@ DWORD WINAPI Detection(HMODULE hModule)
             std::cout << "SCANNING MODULE(S)" << std::endl;
             for (size_t i = 0; i < signatures.size(); i++)
             {
-                ModMemory(signatures[i]);
+                ModuleScan(signatures[i]);
             }
 
             std::cout << "\nSCANNING FOR REFLECTIVE DLL(S)" << std::endl;
             for (size_t i = 0; i < signatures.size(); i++)
             {
-                PrivateERW(signatures[i]);
+                ManualMapScan(signatures[i]);
             }
 
             AutoScan = 0;
@@ -84,7 +85,7 @@ DWORD WINAPI Detection(HMODULE hModule)
 
             for (size_t i = 0; i < signatures.size(); i++)
             {
-                ModMemory(signatures[i]);
+                ModuleScan(signatures[i]);
             }
         }
 
@@ -94,7 +95,17 @@ DWORD WINAPI Detection(HMODULE hModule)
 
             for (size_t i = 0; i < signatures.size(); i++)
             {
-                PrivateERW(signatures[i]);
+                ManualMapScan(signatures[i]);
+            }
+        }
+
+        if (GetAsyncKeyState(KeyPress::VK_5) & 1)
+        {
+            std::cout << "\n**************     SCANNING ALL REGIONS     ****************\n" << std::endl;
+
+            for (size_t i = 0; i < signatures.size(); i++)
+            {
+                ScanAll(signatures[i]);
             }
         }
 

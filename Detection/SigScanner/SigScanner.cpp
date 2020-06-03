@@ -33,8 +33,7 @@ std::vector<infoStruct> GetModuleInfo()
     return container;
 }
 
-
-void PrivateERW(std::string signature)
+void ManualMapScan(std::string signature)
 {
 
     SYSTEM_INFO sysinfo = {};
@@ -59,14 +58,14 @@ void PrivateERW(std::string signature)
             if (mbi.Protect != PAGE_EXECUTE_READ)
             
             {
-                std::cout << "Address " << std::hex << i << " will be changed!" << std::endl;
-                std::cout << "Sleep 30 seconds!" << std::endl;
-                Sleep(60000);
+                //std::cout << "Address " << std::hex << i << " will be changed!" << std::endl;
+                //std::cout << "Sleep 30 seconds!" << std::endl;
+                //Sleep(60000);
                 VirtualAlloc((LPVOID)i, mbi.RegionSize, MEM_COMMIT, PAGE_EXECUTE_READ);
-                VirtualProtect((LPVOID)i, mbi.RegionSize, PAGE_EXECUTE_READ, &mbi.Protect);
+                //VirtualProtect((LPVOID)i, mbi.RegionSize, PAGE_EXECUTE_READ, &mbi.Protect);
 
 
-                std::cout << "CHANGED!" << std::endl;
+                //std::cout << "CHANGED!" << std::endl;
             }
 
             //std::cout << "[+] Scanning for signature '" << signature << "' at address " << std::hex << std::uppercase << i << "..." << std::endl;
@@ -85,7 +84,51 @@ void PrivateERW(std::string signature)
     std::cout << "[+] Done." << std::endl;
 }
 
-void ModMemory(std::string signature)
+void ScanAll(std::string signature)
+{
+
+    SYSTEM_INFO sysinfo = {};
+    MEMORY_BASIC_INFORMATION mbi = {};
+
+    std::string path = CreateFolder(GetDesktopPath(), "Detection\\AllDump");
+    std::string fileName = path + "\\" + "sig_" + signature + ".txt";
+
+    std::ofstream fout(fileName);
+
+    VirtualQuery(0, &mbi, sizeof(mbi));
+
+    GetSystemInfo(&sysinfo);
+
+    for (unsigned int i = 0; i < (unsigned int)sysinfo.lpMaximumApplicationAddress; i += mbi.RegionSize++) {
+
+        size_t buf = VirtualQuery((LPCVOID)i, &mbi, sizeof(mbi));
+        PrintMBI(mbi, std::cout);
+        Sleep(5000);
+
+        DWORD oldProtect = mbi.Protect;
+        DWORD newProtect = 0x40;
+        VirtualProtect((LPVOID)i, mbi.RegionSize, newProtect, &oldProtect);
+
+        //VirtualQuery((LPCVOID)i, &mbi, sizeof(mbi));
+
+        Sleep(5000);
+
+        VirtualProtect((LPVOID)i, mbi.RegionSize, oldProtect, &newProtect);
+
+        Sleep(5000);
+        //VirtualAlloc((LPVOID)i, mbi.RegionSize, PAGE_NOACCESS, PAGE_EXECUTE_READWRITE);
+        //VirtualAlloc((LPVOID)i, mbi.RegionSize, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
+
+        PrintMBI(mbi, std::cout);
+    }
+ 
+
+    fout.close();
+
+    std::cout << "[+] Done." << std::endl;
+}
+
+void ModuleScan(std::string signature)
 {
     MEMORY_BASIC_INFORMATION mbi;
     
@@ -132,8 +175,6 @@ void ModMemory(std::string signature)
 
     std::cout << "[+] Done." << std::endl;
 }
-
-
 
 void PrintMBI(MEMORY_BASIC_INFORMATION mbi, std::ostream& out) {
 
