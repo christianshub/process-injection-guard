@@ -33,37 +33,54 @@ Console options once injected into a game:
 Injector link: https://www.unknowncheats.me/forum/downloads.php?do=file&id=21570
 
 #### `Remote DLL injection` - (detected: hook)
-<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/1_master_standrd.png" height="200" width="600">
+<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Extreme/1_master_standrd.png" height="200" width="600">
 
 #### `Thread hijack` (detected: hook)
-<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/2_master_thread.png" height="200" width="600">
+<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Extreme/2_master_thread.png" height="200" width="600">
 
 #### `LdrLoadDll` - (detected: hook)
-<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/3_master_LdrLoadDll.png" height="200" width="600">
+<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Extreme/3_master_LdrLoadDll.png" height="200" width="600">
 
 #### `LdrpLoadDll` - (detected: hook)
-<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/4_master_LdrpLoadDll.png" height="200" width="600">
+<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Extreme/4_master_LdrpLoadDll.png" height="200" width="600">
 
 #### `Manual map` - (detected: hook + sigscan)
-<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/5_master_mm.png" height="200" width="600">
+<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Extreme/5_master_mm.png" height="200" width="600">
 
 ## Detecting Cheat Engine 7.0
 
 Injector link: https://www.cheatengine.org/
 
-#### `Remote DLL injection` - detected
-<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/CE.png" height="200" width="600">
+#### `Remote DLL injection` - (detected: hook + sigscan)
+<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/CheatEngine/CE.png" height="200" width="400">
 
 
-## Running the hooks and and signature scans (snapshots)
+## Detecting Winject 1.7b
 
-### Hooks when activated
+Injector link: https://www.unknowncheats.me/forum/downloads.php?do=file&id=578
 
-<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/0_hooks.png" height="200" width="600">
+#### `Remote DLL injection` - (detected: hook + sigscan)
+<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Winject/Winject.png" height="200" width="400">
 
-### Signature scanner when running and found a match
+## Detecting Xenos 2.3.2.7
 
-<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/0_sigscan.png" height="200" width="600">
+Injector link: https://www.unknowncheats.me/forum/downloads.php?do=file&id=23686
+
+#### `Remote DLL injection` - (detected: hook)
+<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Xenos/1_xenos_native.png" height="200" width="400">
+
+#### `Manual map` - (detected: hook)
+<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Xenos/2_xenos_mm.png" height="200" width="400">
+
+#### `Kernel Create thread` - (detected: hook)
+<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Xenos/3_xenos_KernelCreateThread.png" height="200" width="400">
+
+#### `Kernel APC` - (detected: hook)
+<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Xenos/4_xenos_KernelAPC.png" height="200" width="400">
+
+
+#### `Kernal Manual Map` - (detected: hook)
+<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Xenos/5_xenos_KernelManualMap.png" height="200" width="400">
 
 
 ### Credits
