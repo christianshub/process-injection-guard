@@ -82,8 +82,14 @@ Injector link: https://www.unknowncheats.me/forum/downloads.php?do=file&id=23686
 #### `Kernal Manual Map` - (detected: hook)
 <img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Xenos/5_xenos_KernelManualMap.png" height="200" width="600">
 
+## Closing thoughts
 
-### Credits
+1. *Function hooks*
+    - `RtlGetFullPathName_U` proved effective when monitoring injections. `LoadLibraryA`, not so much.
+2. *Signature scanners*
+    - Many injectors avoid revealing information about their payload in the PEB, hence scanning the PEB seems meaningless. Scanning in suspect memory regions proved more useful. We could catch Extreme injector's hidden payload this way. This was not the case against Xenos, however.  
 
-- Trampoline hook: [jbremer](http://jbremer.org/x86-api-hooking-demystified/#ah-trampoline2), [guidedhacking.com](https://guidedhacking.com/threads/code-detouring-hooking-guide.14185/)
+## Credits
+
+- Trampoline hook: [jbremer](http://jbremer.org/x86-api-hooking-demystified/#ah-trampoline2), [guidedhacking.com](https://guidedhacking.com/threads/code-detouring-hooking-guide.14185/), [`RtlGetFullPathName_U`](https://googleprojectzero.blogspot.com/2016/02/)
 - Signature scanner: [MEMORY_BASIC_INFORMATION](https://docs.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-memory_basic_information), [Protection Constants](https://docs.microsoft.com/en-us/windows/win32/memory/memory-protection-constants), [VirtualQuery](https://docs.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualquery), [bricata.com](https://bricata.com/blog/signature-detection-vs-network-behavior/), [guidedhacking.com](https://guidedhacking.com/threads/external-internal-pattern-scanning-guide.14112/)
