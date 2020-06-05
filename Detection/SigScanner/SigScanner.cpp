@@ -50,7 +50,7 @@ void ManualMapScan(std::string signature)
         size_t buf = VirtualQuery((LPCVOID)i, &mbi, sizeof(mbi));
         if ((buf != 0) && (mbi.AllocationProtect == PAGE_EXECUTE_READWRITE) && (mbi.Protect != 0))
         {
-            std::cout << "[+] Scanning for signature '" << signature << "' at address " << std::hex << std::uppercase << i << "..." << std::endl;
+            std::cout << "[+] Scanning in suspect memory regions for signature '" << signature << "' at address " << std::hex << std::uppercase << i << "..." << std::endl;
 
             DWORD changedProtect = PAGE_EXECUTE_READ;
     
@@ -65,7 +65,7 @@ void ManualMapScan(std::string signature)
         }  
     }
 
-    std::cout << "[+] Done." << std::endl;
+    std::cout << "\n[+] Done.\n" << std::endl;
 }
 
 
@@ -97,7 +97,7 @@ void ModuleScan(std::string signature, std::string modules)
                     VirtualProtect((LPVOID)curAddress, mbi.RegionSize, changedProtect, &mbi.Protect);
                 }
 
-                std::cout << "[+] Scanning " << container[i].name << " for signature '" << signature << "' at address " << std::hex << std::uppercase << curAddress << "..." << std::endl;
+                std::cout << "[+] Scanning in module '" << container[i].name << "' for signature '" << signature << "' at address " << std::hex << std::uppercase << curAddress << "..." << std::endl;
 
                 PrintContainer(FindSignature(signature, curAddress, mbi.RegionSize));
                 VirtualProtect((LPVOID)curAddress, mbi.RegionSize, mbi.Protect, &changedProtect);
@@ -105,7 +105,7 @@ void ModuleScan(std::string signature, std::string modules)
         }
     }
 
-    std::cout << "[+] Done." << std::endl;
+    std::cout << "\n[+] Done.\n" << std::endl;
 }
 
 

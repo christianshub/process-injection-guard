@@ -12,7 +12,7 @@ BOOL __stdcall RtlHook(PCWSTR FileName, ULONG Size, PWSTR Buffer, PWSTR* ShortNa
 
 void InitRtlPathHook()
 {
-	std::cout << "[+] Initiating hook for: RtlGetFullPathName_U" << std::endl;
+	std::cout << "[+] Initiated hook for: RtlGetFullPathName_U" << std::endl;
 
 	HMODULE hModule = LoadLibraryA("ntdll.dll");
 
