@@ -60,27 +60,27 @@ Injector link: https://www.cheatengine.org/
 Injector link: https://www.unknowncheats.me/forum/downloads.php?do=file&id=578
 
 #### `Remote DLL injection` - (detected: hook + sigscan)
-<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Winject/Winject.png" height="200" width="400">
+<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Winject/Winject.png" height="200" width="600">
 
 ## Detecting Xenos 2.3.2.7
 
 Injector link: https://www.unknowncheats.me/forum/downloads.php?do=file&id=23686
 
 #### `Remote DLL injection` - (detected: hook)
-<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Xenos/1_xenos_native.png" height="200" width="400">
+<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Xenos/1_xenos_native.png" height="200" width="600">
 
 #### `Manual map` - (detected: hook)
-<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Xenos/2_xenos_mm.png" height="200" width="400">
+<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Xenos/2_xenos_mm.png" height="200" width="600">
 
 #### `Kernel Create thread` - (detected: hook)
-<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Xenos/3_xenos_KernelCreateThread.png" height="200" width="400">
+<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Xenos/3_xenos_KernelCreateThread.png" height="200" width="600">
 
 #### `Kernel APC` - (detected: hook)
-<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Xenos/4_xenos_KernelAPC.png" height="200" width="400">
+<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Xenos/4_xenos_KernelAPC.png" height="200" width="600">
 
 
 #### `Kernal Manual Map` - (detected: hook)
-<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Xenos/5_xenos_KernelManualMap.png" height="200" width="400">
+<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Xenos/5_xenos_KernelManualMap.png" height="200" width="600">
 
 
 ### Credits
