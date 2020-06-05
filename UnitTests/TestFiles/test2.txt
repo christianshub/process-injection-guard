@@ -1,0 +1,1 @@
+find this str1ng. This is testing masks, we need to find two strings names in this file.
