@@ -25,7 +25,7 @@ Console options once injected into a game:
 2. Run it one time - a folder and a `config.ini` file should be created on your desktop.
 3. Navigate to `Desktop/Detection/config.ini`.
 4. Fill in info about which signatures to scan for (e.g.: `4D5A90`, `4d5a90`, `4d??90`)
-5. Fill in info about what modules you wish to scan through. If left blank, it scans through all visible modules. 
+5. Fill in info about which modules you wish to scan through. If left blank, it scans through all visible modules. 
 6. Run it and choose appropriate console options.
 
 ## Detecting Extreme Injector v3.7.2
