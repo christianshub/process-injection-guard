@@ -1,21 +1,17 @@
 #pragma once
 #include <iostream>
-#include <Windows.h>
+#include <windows.h>
 #include <fstream>
-#include <shlobj.h>
-#include <algorithm>
+#include <shlobj.h> // SHGetFolderPathA, CSIDL_DESKTOP
 #include <vector>
+
+#include "../Utility/StrManipulation.h"
 
 /// <summary>
 /// Gets desktop path
 /// </summary>
 /// <returns>C:\Users\USER\Desktop\</returns>
 std::string GetDesktopPath();
-
-/// <summary>
-/// Strips all substrings from string
-/// </summary>
-std::string EraseAllSubStr(std::string& mainStr, const std::string& toErase);
 
 /// <summary>
 /// Strips filename from known file endings and backslashes

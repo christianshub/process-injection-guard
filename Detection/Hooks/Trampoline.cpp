@@ -8,7 +8,7 @@ BYTE* Trampoline(PBYTE source, PBYTE destination, const uintptr_t byteLen)
 		return 0;
 	}
 
-	BYTE* trampoline = (BYTE*)VirtualAlloc(0, byteLen, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
+	BYTE* trampoline = (BYTE*) VirtualAlloc(0, byteLen, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
 
 	memcpy_s(trampoline, byteLen, source, byteLen);
 

@@ -54,7 +54,7 @@ DWORD WINAPI Detection(HMODULE hModule)
 
             std::cout << "\n**************              AUTOSCAN: ON             ****************\n" << std::endl;
 
-            std::cout << "SCANNING MODULE(S) & MANUAL MAP REGIONS\n" << std::endl;
+            std::cout << "SCANNING MODULE(S) & SUSPECT REGIONS\n" << std::endl;
 
             for (size_t i = 0; i < signatures.size(); i++)
             {
@@ -90,7 +90,7 @@ DWORD WINAPI Detection(HMODULE hModule)
 
         if (GetAsyncKeyState(KeyPress::VK_4) & 1)
         {
-            std::cout << "\n**************     SCANNING FOR REFLECTIVE DLLs     ****************\n" << std::endl;
+            std::cout << "\n**************     SCANNING IN SUSPECT REGIONS     ****************\n" << std::endl;
 
             for (size_t i = 0; i < signatures.size(); i++)
             {

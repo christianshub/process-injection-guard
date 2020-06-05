@@ -1,25 +1,5 @@
 #include "ConfigParser.h"
 
-std::string ToLowercase(std::string& str)
-{
-	std::transform(str.begin(), str.end(), str.begin(),
-		[](unsigned char c) { return std::tolower(c); });
-
-	return str;
-}
-
-
-std::string ReplaceAllSubStr(std::string& mainStr, const std::string toBeReplaced, const std::string replaceWith)
-{
-	size_t pos = std::string::npos;
-	while ((pos = mainStr.find(toBeReplaced)) != std::string::npos)
-	{
-		mainStr.replace(pos, toBeReplaced.length(), replaceWith);
-	}
-
-	return mainStr;
-}
-
 unsigned int ParseNumerics(const std::string num)
 {
 	if (num != "1")

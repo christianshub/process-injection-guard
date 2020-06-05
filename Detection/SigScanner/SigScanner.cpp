@@ -1,5 +1,9 @@
 #include "SigScanner.h"
 
+// 
+// GET MODULE LIST
+//
+
 void GetModuleInfo(std::vector<infoStruct> &container, std::string content)
 {
     PEB* pPEB = (PEB*)__readfsdword(0x30);
@@ -17,7 +21,7 @@ void GetModuleInfo(std::vector<infoStruct> &container, std::string content)
         info.base = Current->DllBase;
         info.size = Current->SizeOfImage;
 
-        if ((content.length() == 0) || (ToLowercase(content).find(ToLowercase(info.name)) != std::string::npos))
+        if ( (content.length() == 0) || content.find(info.name) != std::string::npos)
         {
             container.push_back(info);
         }
@@ -25,6 +29,12 @@ void GetModuleInfo(std::vector<infoStruct> &container, std::string content)
         CurrentEntry = CurrentEntry->Flink;
     }
 }
+
+
+// 
+// MANUAL MAP SCAN
+//
+
 
 void ManualMapScan(std::string signature)
 {
@@ -58,6 +68,12 @@ void ManualMapScan(std::string signature)
     std::cout << "[+] Done." << std::endl;
 }
 
+
+// 
+// MODULE SCANNER
+//
+
+
 void ModuleScan(std::string signature, std::string modules)
 {
     MEMORY_BASIC_INFORMATION mbi;
@@ -69,7 +85,6 @@ void ModuleScan(std::string signature, std::string modules)
 
         VirtualQuery((LPCVOID) container[i].base, &mbi, sizeof(mbi));
 
-        // BASIC SCAN
         for (unsigned int curAddress = (unsigned int) container[i].base; curAddress < ( ((unsigned int) container[i].base) + ((unsigned int) container[i].size) - 1); curAddress += mbi.RegionSize++) {
 
             size_t buf = VirtualQuery((LPCVOID)curAddress, &mbi, sizeof(mbi));
@@ -92,6 +107,13 @@ void ModuleScan(std::string signature, std::string modules)
 
     std::cout << "[+] Done." << std::endl;
 }
+
+
+
+// 
+// SIGNATURE SCANNER
+//
+
 
 void PrintContainer(std::map<int, std::string> Container)
 {

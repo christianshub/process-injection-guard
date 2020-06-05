@@ -2,15 +2,10 @@
 
 #include <windows.h>
 #include <iostream>
-#include <fstream>
-#include <sstream>
-#include <iomanip>
 #include <map>
-#include <vector>
 #include "x64dbg_ntdll.h"
-#include "../Config/Config.h"
-#include "../Config/ConfigParser.h"
 #include "../Utility/Convertions.h"
+#include "../Utility/StrManipulation.h"
 
 #define DLLEXPORT __declspec(dllexport)
 

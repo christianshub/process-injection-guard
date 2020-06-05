@@ -24,9 +24,6 @@
     <ClCompile Include="Config\ConfigParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Convertions\Convertions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SigScanner\SigScanner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -42,15 +39,15 @@
     <ClCompile Include="Hooks\hkRtlGetFullPathName_U\hkRtlGetFullPathName_U.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Utility\StrManipulation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Config\Config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Config\ConfigParser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Convertions\Convertions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SigScanner\SigScanner.h">
@@ -72,6 +69,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Hooks\hkRtlGetFullPathName_U\hkRtlGetFullPathName_U.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\StrManipulation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
