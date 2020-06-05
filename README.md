@@ -32,26 +32,26 @@ Console options once injected into a game:
 
 Injector link: https://www.unknowncheats.me/forum/downloads.php?do=file&id=21570
 
-#### `Remote DLL injection`
+#### `Remote DLL injection` - (detected: hook)
 <img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/1_master_standrd.png" height="200" width="600">
 
-#### `Thread hijack`
+#### `Thread hijack` (detected: hook)
 <img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/2_master_thread.png" height="200" width="600">
 
-#### `LdrLoadDll`
+#### `LdrLoadDll` - (detected: hook)
 <img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/3_master_LdrLoadDll.png" height="200" width="600">
 
-#### `LdrpLoadDll`
+#### `LdrpLoadDll` - (detected: hook)
 <img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/4_master_LdrpLoadDll.png" height="200" width="600">
 
-#### `Manual map`
+#### `Manual map` - (detected: hook + sigscan)
 <img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/5_master_mm.png" height="200" width="600">
 
 ## Detecting Cheat Engine 7.0
 
 Injector link: https://www.cheatengine.org/
 
-#### `Remote DLL injection`
+#### `Remote DLL injection` - detected
 <img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/CE.png" height="200" width="600">
 
 
