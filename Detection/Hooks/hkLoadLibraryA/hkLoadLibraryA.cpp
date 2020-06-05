@@ -13,7 +13,7 @@ HMODULE __stdcall LoadLibHook(LPCSTR FileName) {
 
 void InitLoadLibHook()
 {
-	std::cout << "[+] Initiating hook for: LoadLibraryA" << std::endl;
+	std::cout << "[+] Initiated hook for: LoadLibraryA" << std::endl;
 
 	HMODULE hModule = LoadLibraryA("kernel32.dll");
 
