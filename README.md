@@ -4,10 +4,10 @@
 The tool consists of two core features:
 
 1. *Function hooks* (detects injections)
-    - We are hooking `LoadLibraryA` and `RtlGetFullPathName_U`. 
+    - hooks `LoadLibraryA` and `RtlGetFullPathName_U`. 
 2. *Signature scanners* (detects game hacks once loaded into the game)
-    - We scan through the `PEB`'s module list
-    - We scan suspect memory regions (`PAGE_EXECUTE_READWRITE`) to detect hacks injected through the `Manual Map` injection technique. 
+    - scan through the `PEB`'s module list
+    - scan suspect memory regions (`PAGE_EXECUTE_READWRITE`) to detect hacks injected through the `Manual Map` injection technique. 
 
 Console options once injected into a game:
 
