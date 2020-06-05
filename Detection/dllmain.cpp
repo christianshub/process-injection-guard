@@ -31,7 +31,7 @@ DWORD WINAPI Detection(HMODULE hModule)
     std::cout << "Press '2'         Hook LoadLibraryA hook" << "\n" << std::endl;
 
     std::cout << "Press '3'         Scan module(s) from config.ini" << std::endl;
-    std::cout << "Press '4'         Scan known Reflective DLL memory regions\n" << std::endl;
+    std::cout << "Press '4'         Scan suspect memory regions\n" << std::endl;
 
     std::cout << "Press '5'         Detach Detection module" << std::endl;
     std::cout << "======================================================================" << "\n" << std::endl;
