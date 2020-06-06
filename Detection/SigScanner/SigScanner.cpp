@@ -1,9 +1,12 @@
 #include "SigScanner.h"
 
+
 // 
-// GET MODULE LIST
+// MODULE SCANNER
 //
 
+
+// Get the PEB's module list
 void GetModuleInfo(std::vector<infoStruct> &container, std::string content)
 {
     PEB* pPEB = (PEB*)__readfsdword(0x30);
@@ -30,6 +33,39 @@ void GetModuleInfo(std::vector<infoStruct> &container, std::string content)
     }
 }
 
+void ModuleScan(std::string signature, std::string modules)
+{
+    std::vector<infoStruct> container = {};
+    GetModuleInfo(container, modules);
+
+    MEMORY_BASIC_INFORMATION mbi;
+
+    for (size_t i = 0; i < container.size(); i++) {
+
+        VirtualQuery((LPCVOID)container[i].base, &mbi, sizeof(mbi));
+
+        for (unsigned int curAddress = (unsigned int)container[i].base; curAddress < (((unsigned int)container[i].base) + ((unsigned int)container[i].size) - 1); curAddress += mbi.RegionSize++) {
+
+            size_t buf = VirtualQuery((LPCVOID)curAddress, &mbi, sizeof(mbi));
+            if ((buf != 0) && (mbi.Protect != 0))
+            {
+                DWORD changedProtect = PAGE_EXECUTE_READ;
+
+                if ((mbi.Protect != PAGE_EXECUTE_READWRITE) && (mbi.Protect != PAGE_EXECUTE_READ) && (mbi.Protect != PAGE_READONLY) && (mbi.Protect != PAGE_READWRITE))
+                {
+                    VirtualProtect((LPVOID)curAddress, mbi.RegionSize, changedProtect, &mbi.Protect);
+                }
+
+                std::cout << "[+] Scanning in module '" << container[i].name << "' for signature '" << signature << "' at address " << std::hex << std::uppercase << curAddress << "..." << std::endl;
+
+                PrintContainer(FindSignature(signature, curAddress, mbi.RegionSize));
+                VirtualProtect((LPVOID)curAddress, mbi.RegionSize, mbi.Protect, &changedProtect);
+            }
+        }
+    }
+
+    std::cout << "\n[+] Done.\n" << std::endl;
+}
 
 // 
 // MANUAL MAP SCAN
@@ -69,44 +105,6 @@ void ManualMapScan(std::string signature)
 }
 
 
-// 
-// MODULE SCANNER
-//
-
-
-void ModuleScan(std::string signature, std::string modules)
-{
-    MEMORY_BASIC_INFORMATION mbi;
-    
-    std::vector<infoStruct> container = {};
-    GetModuleInfo(container, modules);
-
-    for (size_t i = 0; i < container.size(); i++) {
-
-        VirtualQuery((LPCVOID) container[i].base, &mbi, sizeof(mbi));
-
-        for (unsigned int curAddress = (unsigned int) container[i].base; curAddress < ( ((unsigned int) container[i].base) + ((unsigned int) container[i].size) - 1); curAddress += mbi.RegionSize++) {
-
-            size_t buf = VirtualQuery((LPCVOID)curAddress, &mbi, sizeof(mbi));
-            if ((buf != 0) && (mbi.Protect != 0))
-            {
-                DWORD changedProtect = PAGE_EXECUTE_READ;
-
-                if ((mbi.Protect != PAGE_EXECUTE_READWRITE) && (mbi.Protect != PAGE_EXECUTE_READ) && (mbi.Protect != PAGE_READONLY) && (mbi.Protect != PAGE_READWRITE))
-                {
-                    VirtualProtect((LPVOID)curAddress, mbi.RegionSize, changedProtect, &mbi.Protect);
-                }
-
-                std::cout << "[+] Scanning in module '" << container[i].name << "' for signature '" << signature << "' at address " << std::hex << std::uppercase << curAddress << "..." << std::endl;
-
-                PrintContainer(FindSignature(signature, curAddress, mbi.RegionSize));
-                VirtualProtect((LPVOID)curAddress, mbi.RegionSize, mbi.Protect, &changedProtect);
-            }
-        }
-    }
-
-    std::cout << "\n[+] Done.\n" << std::endl;
-}
 
 
 
