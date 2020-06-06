@@ -44,8 +44,8 @@ void ModuleScan(std::string signature, std::string modules)
 
         VirtualQuery((LPCVOID)container[i].base, &mbi, sizeof(mbi));
 
-        for (unsigned int curAddress = (unsigned int)container[i].base; curAddress < (((unsigned int)container[i].base) + ((unsigned int)container[i].size) - 1); curAddress += mbi.RegionSize++) {
-
+        for (unsigned int curAddress = (unsigned int)container[i].base; curAddress < (((unsigned int)container[i].base) + ((unsigned int)container[i].size) - 1); curAddress += mbi.RegionSize++) 
+        {
             size_t buf = VirtualQuery((LPCVOID)curAddress, &mbi, sizeof(mbi));
             if ((buf != 0) && (mbi.Protect != 0))
             {
@@ -81,8 +81,8 @@ void ManualMapScan(std::string signature)
 
     GetSystemInfo(&sysinfo);
 
-    for (unsigned int i = 0; i < (unsigned int)sysinfo.lpMaximumApplicationAddress; i += mbi.RegionSize++) {
-
+    for (unsigned int i = 0; i < (unsigned int)sysinfo.lpMaximumApplicationAddress; i += mbi.RegionSize++) 
+    {
         size_t buf = VirtualQuery((LPCVOID)i, &mbi, sizeof(mbi));
         if ((buf != 0) && (mbi.AllocationProtect == PAGE_EXECUTE_READWRITE) && (mbi.Protect != 0))
         {
