@@ -10,5 +10,5 @@
 /// <param name="dst"></param>
 /// <param name="len">length of </param>
 /// <returns></returns>
-BYTE* Trampoline(PBYTE src, PBYTE dst, const uintptr_t len);
+BYTE* Trampoline(PBYTE src, PBYTE dst, unsigned int len);
 
