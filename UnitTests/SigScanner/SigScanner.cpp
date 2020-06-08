@@ -116,7 +116,7 @@ std::string CurrentByte(unsigned int index)
     return ss.str();
 }
 
-std::map<int, std::string> FindSignature(std::string signature, unsigned int address, ULONG size)
+std::map<int, std::string> FindSignature(std::string signature, unsigned int address, unsigned int size)
 {
     std::string Buffer = "";
     std::string FirstSigByte = signature.substr(0, 2); // Get the first byte from Sig.

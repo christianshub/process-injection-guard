@@ -50,7 +50,7 @@ DLLEXPORT void ManualMapScan(std::string signature);
 /// <returns>                                   
 /// Container with an address and corrosponding string 
 /// </returns>
-DLLEXPORT std::map<int, std::string> FindSignature(std::string signature, unsigned int address, ULONG size);
+DLLEXPORT std::map<int, std::string> FindSignature(std::string signature, unsigned int address, unsigned int size);
 
 /// <summary>
 /// Converts a byte at an index to std::string
