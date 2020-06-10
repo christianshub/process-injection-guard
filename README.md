@@ -32,19 +32,19 @@ Console options once injected into a game:
 
 Injector link: https://www.unknowncheats.me/forum/downloads.php?do=file&id=21570
 
-#### `Remote DLL injection` - (detected: hook)
+#### `Remote DLL injection`
 <img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Extreme/1_master_standrd.png" height="200" width="600">
 
-#### `Thread hijack` (detected: hook)
+#### `Thread hijack`
 <img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Extreme/2_master_thread.png" height="200" width="600">
 
-#### `LdrLoadDll` - (detected: hook)
+#### `LdrLoadDll`
 <img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Extreme/3_master_LdrLoadDll.png" height="200" width="600">
 
-#### `LdrpLoadDll` - (detected: hook)
+#### `LdrpLoadDll`
 <img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Extreme/4_master_LdrpLoadDll.png" height="200" width="600">
 
-#### `Manual map` - (detected: hook + sigscan)
+#### `Manual map`
 <img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Extreme/5_master_mm.png" height="200" width="600">
 
 ## Detecting Cheat Engine 7.0
@@ -59,27 +59,27 @@ Injector link: https://www.cheatengine.org/
 
 Injector link: https://www.unknowncheats.me/forum/downloads.php?do=file&id=578
 
-#### `Remote DLL injection` - (detected: hook + sigscan)
+#### `Remote DLL injection`
 <img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Winject/Winject.png" height="200" width="600">
 
 ## Detecting Xenos 2.3.2.7
 
 Injector link: https://www.unknowncheats.me/forum/downloads.php?do=file&id=23686
 
-#### `Remote DLL injection` - (detected: hook)
+#### `Remote DLL injection`
 <img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Xenos/1_xenos_native.png" height="200" width="600">
 
-#### `Manual map` - (detected: hook)
+#### `Manual map`
 <img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Xenos/2_xenos_mm.png" height="200" width="600">
 
-#### `Kernel Create thread` - (detected: hook)
+#### `Kernel Create thread`
 <img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Xenos/3_xenos_KernelCreateThread.png" height="200" width="600">
 
-#### `Kernel APC` - (detected: hook)
+#### `Kernel APC`
 <img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Xenos/4_xenos_KernelAPC.png" height="200" width="600">
 
 
-#### `Kernal Manual Map` - (detected: hook)
+#### `Kernal Manual Map`
 <img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Xenos/5_xenos_KernelManualMap.png" height="200" width="600">
 
 ## Closing thoughts
