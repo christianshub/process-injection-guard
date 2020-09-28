@@ -1,6 +1,6 @@
 ## Introduction 
 
-`DetectionTool`is a DLL file intended to be injected into a process to protect it from foreign intruders.
+`Process-Injection-Guard`is a DLL file intended to be injected into a process to protect it from foreign intruders.
 The tool consists of two core features:
 
 1. *Function hooks* (detects injections)
@@ -11,7 +11,7 @@ The tool consists of two core features:
 
 Console options once injected into a target process:
 
-<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/0_consoleOptions.png" height="200" width="600">
+<img src="https://github.com/christianshub/Process-Injection-Guard/blob/master/Snapshots/0_consoleOptions.png" height="200" width="600">
 
 ## Operation system, project, etc.
 
@@ -33,26 +33,27 @@ Console options once injected into a target process:
 Injector link: https://www.unknowncheats.me/forum/downloads.php?do=file&id=21570
 
 #### `Remote DLL injection`
-<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Extreme/1_master_standrd.png" height="200" width="600">
+<img src="https://github.com/christianshub/Process-Injection-Guard
+/blob/master/Snapshots/Extreme/1_master_standrd.png" height="200" width="600">
 
 #### `Thread hijack`
-<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Extreme/2_master_thread.png" height="200" width="600">
+<img src="https://github.com/christianshub/Process-Injection-Guard/blob/master/Snapshots/Extreme/2_master_thread.png" height="200" width="600">
 
 #### `LdrLoadDll`
-<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Extreme/3_master_LdrLoadDll.png" height="200" width="600">
+<img src="https://github.com/christianshub/Process-Injection-Guard/blob/master/Snapshots/Extreme/3_master_LdrLoadDll.png" height="200" width="600">
 
 #### `LdrpLoadDll`
-<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Extreme/4_master_LdrpLoadDll.png" height="200" width="600">
+<img src="https://github.com/christianshub/Process-Injection-Guard/blob/master/Snapshots/Extreme/4_master_LdrpLoadDll.png" height="200" width="600">
 
 #### `Manual map`
-<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Extreme/5_master_mm.png" height="200" width="600">
+<img src="https://github.com/christianshub/Process-Injection-Guard/blob/master/Snapshots/Extreme/5_master_mm.png" height="200" width="600">
 
 ## Detecting Cheat Engine 7.0
 
 Injector link: https://www.cheatengine.org/
 
 #### `Remote DLL injection` - (detected: hook + sigscan)
-<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/CheatEngine/CE.png" height="200" width="400">
+<img src="https://github.com/christianshub/Process-Injection-Guard/blob/master/Snapshots/CheatEngine/CE.png" height="200" width="400">
 
 
 ## Detecting Winject 1.7b
@@ -60,27 +61,27 @@ Injector link: https://www.cheatengine.org/
 Injector link: https://www.unknowncheats.me/forum/downloads.php?do=file&id=578
 
 #### `Remote DLL injection`
-<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Winject/Winject.png" height="200" width="600">
+<img src="https://github.com/christianshub/Process-Injection-Guard/blob/master/Snapshots/Winject/Winject.png" height="200" width="600">
 
 ## Detecting Xenos 2.3.2.7
 
 Injector link: https://www.unknowncheats.me/forum/downloads.php?do=file&id=23686
 
 #### `Remote DLL injection`
-<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Xenos/1_xenos_native.png" height="200" width="600">
+<img src="https://github.com/christianshub/Process-Injection-Guard/blob/master/Snapshots/Xenos/1_xenos_native.png" height="200" width="600">
 
 #### `Manual map`
-<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Xenos/2_xenos_mm.png" height="200" width="600">
+<img src="https://github.com/christianshub/Process-Injection-Guard/blob/master/Snapshots/Xenos/2_xenos_mm.png" height="200" width="600">
 
 #### `Kernel Create thread`
-<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Xenos/3_xenos_KernelCreateThread.png" height="200" width="600">
+<img src="https://github.com/christianshub/Process-Injection-Guard/blob/master/Snapshots/Xenos/3_xenos_KernelCreateThread.png" height="200" width="600">
 
 #### `Kernel APC`
-<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Xenos/4_xenos_KernelAPC.png" height="200" width="600">
+<img src="https://github.com/christianshub/Process-Injection-Guard/blob/master/Snapshots/Xenos/4_xenos_KernelAPC.png" height="200" width="600">
 
 
 #### `Kernal Manual Map`
-<img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/Xenos/5_xenos_KernelManualMap.png" height="200" width="600">
+<img src="https://github.com/christianshub/Process-Injection-Guard/blob/master/Snapshots/Xenos/5_xenos_KernelManualMap.png" height="200" width="600">
 
 ## Closing thoughts
 
