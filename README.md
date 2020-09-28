@@ -1,15 +1,15 @@
 ## Introduction 
 
-`DetectionTool`is a DLL file intended to be injected into a game's process to protect it from foreign intruders.
+`DetectionTool`is a DLL file intended to be injected into a process to protect it from foreign intruders.
 The tool consists of two core features:
 
 1. *Function hooks* (detects injections)
     - hooks `LoadLibraryA` and `RtlGetFullPathName_U`. 
-2. *Signature scanners* (detects game hacks once loaded into the game)
+2. *Signature scanners* (detects malicious sigs)
     - scan through the `PEB`'s module list
     - scan suspect memory regions (`PAGE_EXECUTE_READWRITE`) to detect hacks injected through the `Manual Map` injection technique. 
 
-Console options once injected into a game:
+Console options once injected into a target process:
 
 <img src="https://github.com/christianshub/DetectionTool/blob/master/Snapshots/0_consoleOptions.png" height="200" width="600">
 
