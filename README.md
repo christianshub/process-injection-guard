@@ -33,8 +33,7 @@ Console options once injected into a target process:
 Injector link: https://www.unknowncheats.me/forum/downloads.php?do=file&id=21570
 
 #### `Remote DLL injection`
-<img src="https://github.com/christianshub/Process-Injection-Guard
-/blob/master/Snapshots/Extreme/1_master_standrd.png" height="200" width="600">
+<img src="https://github.com/christianshub/Process-Injection-Guard/blob/master/Snapshots/Extreme/1_master_standrd.png" height="200" width="600">
 
 #### `Thread hijack`
 <img src="https://github.com/christianshub/Process-Injection-Guard/blob/master/Snapshots/Extreme/2_master_thread.png" height="200" width="600">
