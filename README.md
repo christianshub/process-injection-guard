@@ -17,7 +17,6 @@ Console options once injected into a target process:
 
 - IDE: Visual Studio 2019 (x86 project).
 - OS: Windows 10, version 1909.
-- Unit test framework: https://github.com/google/googletest
 
 ## Setup
 
