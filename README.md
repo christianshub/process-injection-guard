@@ -1,6 +1,6 @@
 ## Introduction 
 
-Process-Injection-Guard is a DLL file intended to be injected into a process to then detect if foreign intruders are injecting malicious code into it's process. THe intention is to study how anti-cheat/anti-virus works on a basic scale. 
+Process-Injection-Guard is a DLL file intended to be injected into a process to then detect if foreign intruders are injecting malicious code into it's process. The intention is to study how anti-cheat/anti-virus works on a basic scale. 
 
 The tool consists of two core features:
 
