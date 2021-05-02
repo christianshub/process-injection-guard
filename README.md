@@ -1,6 +1,6 @@
 ## Introduction 
 
-`Process-Injection-Guard`is a DLL file intended to be injected into a process to detect foreign intruders.
+`Process-Injection-Guard`is a DLL file intended to be injected into a process to detect foreign intruders. It's main purpose was to understand how Anti-Cheat/Anti-Cheat worked on a basic scale.
 The tool consists of two core features:
 
 1. *Function hooks* (detects injections)
