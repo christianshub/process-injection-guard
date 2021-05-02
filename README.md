@@ -1,10 +1,10 @@
 ## Introduction 
 
-`Process-Injection-Guard`is a DLL file intended to be injected into a process to protect it from foreign intruders.
+`Process-Injection-Guard`is a DLL file intended to be injected into a process to detect foreign intruders.
 The tool consists of two core features:
 
 1. *Function hooks* (detects injections)
-    - hooks `LoadLibraryA` and `RtlGetFullPathName_U`. 
+    - hooks `LoadLibraryA` and `RtlGetFullPathName_U`, known functions injectors are using.
 2. *Signature scanners* (detects malicious sigs)
     - scan through the `PEB`'s module list
     - scan suspect memory regions (`PAGE_EXECUTE_READWRITE`) to detect hacks injected through the `Manual Map` injection technique. 
