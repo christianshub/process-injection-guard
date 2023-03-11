@@ -9,7 +9,11 @@
 // Get the PEB's module list
 void GetModuleInfo(std::vector<infoStruct> &container, std::string content)
 {
+#if defined(_M_X64) || defined(__amd64__)
+    PEB* pPEB = (PEB*)__readgsdword (0x30);
+#else
     PEB* pPEB = (PEB*)__readfsdword(0x30);
+#endif
     LDR_DATA_TABLE_ENTRY* Current = NULL;
     LIST_ENTRY* CurrentEntry = pPEB->Ldr->InMemoryOrderModuleList.Flink;
 
